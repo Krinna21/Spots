@@ -46,6 +46,8 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1;
+  border: none;
+  background-color: #fcf5e5;
 }
 
 .profile__add-btn {
@@ -53,6 +55,11 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1;
+  background-color: black;
+  color: #fcf5e5;
+  width: 149px;
+  height: 52px;
+  margin-top: 138px;
 }
 
 @media screen and (max-width: 627px) {
@@ -74,6 +81,9 @@
     font-style: 20px;
     margin-bottom: 6px;
     max-width: 288px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
   }
 
   .profile__column {
@@ -83,12 +93,27 @@
   .profile__add-btn {
     margin: 0;
     width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: black;
+    color: #fcf5e5;
+    width: 288px;
+    height: 52px;
   }
 
   .profile__description {
     margin: 0 0 32px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
   }
 
   .profile__edit-btn {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    border: none;
+    background-color: #fcf5e5;
   }
 }
