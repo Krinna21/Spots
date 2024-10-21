@@ -1,21 +1,35 @@
 # Project 3: Spots
 
-### Overview  
+### Overview
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+**Spots** is a simple web-based application that allows users to explore various locations through interactive cards. Each card represents a different spot, with an image, title, and description. Users can interact with the "like" button on each card to express their preferences. The user profile section includes features to edit the profile and add new posts. The project focuses on providing a visually appealing layout with minimalistic design elements.
+
+### Features:
+
+- Profile section with avatar, name, and biography
+- Ability to edit the profile
+- Interactive cards displaying different spots
+- "Like" button functionality on each card
+- Button to create a new post
+
+### Technologies Used:
+
+- **HTML** for the structure
+- **CSS** for styling, with BEM methodology for class naming
+- **JavaScript** (if applicable for future enhancements)
+- **Responsive design** using media queries
+- **Image assets** for visuals (icons, photos)
+
+## Future Improvements
+
+Here are some planned improvements for the project:
+
+1. **Interactive features**
+2. **Profile editing**
+3. **Backend integration**
+4. **Responsive improvements**
+5. **Accessibility**
+
+## Author
+
+Krinna Patel, 2024
