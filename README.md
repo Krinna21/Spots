@@ -36,6 +36,10 @@ This webpage is deployed to Github Pages
 
 - [Deployment Link](https://krinna21.github.io/se_project_spots/):
 
+## Description Video
+
+-[ Link to Video](https://www.loom.com/share/7831014116214bb2b3ac8115d0432f36?sid=4956b3d1-2073-40c5-b52c-4e50b9d35b07)
+
 ## Author
 
 Krinna Patel, 2024
