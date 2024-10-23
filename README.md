@@ -34,7 +34,7 @@ Here are some planned improvements for the project:
 
 This webpage is deployed to Github Pages
 
-- Deployment Link:
+- [Deployment Link](https://krinna21.github.io/se_project_spots/):
 
 ## Author
 
