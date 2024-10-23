@@ -30,6 +30,12 @@ Here are some planned improvements for the project:
 4. **Responsive improvements**
 5. **Accessibility**
 
+## Deployment
+
+This webpage is deployed to Github Pages
+
+- Deployment Link:
+
 ## Author
 
 Krinna Patel, 2024
