@@ -121,3 +121,10 @@
     line-height: 16px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .profile__edit-btn {
+    margin-top: 12px;
+    width: 100%;
+  }
+}
