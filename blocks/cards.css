@@ -2,6 +2,7 @@
   padding-top: 20px;
   padding-bottom: 136px;
   border-bottom: 1px solid #21212166;
+  padding-bottom: 100px;
 }
 
 .cards__list {
@@ -22,10 +23,10 @@
 
 @media screen and (max-width: 320px) {
   .cards {
-    padding-bottom: 100px;
+    padding-bottom: 80px;
   }
 
   .cards__list {
-    gap: 30px 10px;
+    gap: 20px 10px;
   }
 }
