@@ -36,7 +36,8 @@
 }
 
 .card__like-btn:hover {
-  opacity: 100%;
+  background-color: #ffcccc;
+  transition: background-color 0.3s ease;
 }
 
 @media screen and (max-width: 627px) {
