@@ -17,7 +17,7 @@
   flex-direction: column;
 }
 
-.profile__title {
+.profile__name {
   margin: 0 0 12px;
   font-weight: 500;
   font-size: 32px;
@@ -95,7 +95,7 @@
     width: 80px;
   }
 
-  .profile__title {
+  .profile__name {
     font-size: 20px;
     margin-bottom: 6px;
     max-width: 288px;
