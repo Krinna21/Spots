@@ -50,8 +50,8 @@
 }
 
 .modal__submit-btn:hover {
-  background-color: #d3d3d3;
-  transition: background-color 0.3s ease;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .modal__input {

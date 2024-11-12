@@ -25,19 +25,19 @@
 }
 
 .card__like-btn {
-  background-image: url(../images/Like\ Icon.svg);
+  background-image: url(../images/Like.svg);
   width: 23px;
   height: 20px;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  opacity: 1;
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
 
 .card__like-btn:hover {
-  background-color: #ffcccc;
-  transition: background-color 0.3s ease;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
 
 .card__like-icon {

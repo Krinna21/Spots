@@ -62,8 +62,8 @@
 }
 
 .profile__edit-btn:hover {
-  background-color: #f0f0f0;
-  transition: background-color 0.3s ease;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 .profile__add-btn {
@@ -86,8 +86,8 @@
 }
 
 .profile__add-btn:hover {
-  background-color: #e0e0e0;
-  transition: background-color 0.3s ease;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 @media screen and (max-width: 627px) {
@@ -134,7 +134,7 @@
 @media screen and (max-width: 320px) {
   .profile__edit-btn {
     width: 100%;
-    padding: none;
+    padding: 0;
     display: flex;
     justify-content: center;
   }
