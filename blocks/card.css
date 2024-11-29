@@ -59,6 +59,7 @@
   opacity: 0.4;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  background-repeat: no-repeat;
 }
 
 .card__like-btn:hover {
@@ -72,10 +73,13 @@
   opacity: 1;
   background-color: transparent;
   border: none;
+  background-repeat: no-repeat;
 }
 
 .card__like-btn_liked:hover {
   background-image: url(../images/Heart-Hover.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 .card__like-icon {
