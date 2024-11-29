@@ -75,8 +75,12 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
-  width: 135px;
+  width: 100%;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .modal__close-btn_type_preview {
@@ -168,7 +172,8 @@
   }
 
   .modal__caption {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 22px;
     width: 111 px;
     height: 27px;
     left: 16px;
@@ -185,8 +190,9 @@
 @media screen and (max-width: 320px) {
   .modal__caption {
     margin: 0;
+    font-size: 16px;
+    line-height: 20px;
     padding: 4px 8px;
-    font-size: 20px;
     font-weight: 500;
     line-height: 24px;
     color: #fff;
