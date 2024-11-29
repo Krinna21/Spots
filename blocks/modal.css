@@ -31,6 +31,22 @@
   border-radius: 8px;
 }
 
+.modal__close-btn {
+  position: absolute;
+  top: 32px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.modal__close-btn:hover {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
 .modal__content-preview {
   padding: 0;
   background: none;
@@ -52,12 +68,6 @@
   opacity: 0px;
 }
 
-.modal__close-btn_type_preview {
-  background-image: url("../images/Close-btn-light.svg");
-  top: 0;
-  right: -50px;
-}
-
 .modal__caption {
   background-color: #212121;
   color: #ffffff;
@@ -69,20 +79,10 @@
   font-weight: 500;
 }
 
-.modal__close-btn {
-  position: absolute;
-  top: 32px;
-  right: 50px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.modal__close-btn:hover {
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+.modal__close-btn_type_preview {
+  background-image: url("../images/Close-btn-light.svg");
+  top: 0;
+  right: -50px;
 }
 
 .modal__submit-btn {
@@ -179,5 +179,15 @@
   .modal__close-btn_type_preview {
     top: -5px;
     right: -5px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .modal__caption {
+    width: 95px;
+    height: 19px;
+    gap: 0px;
+    font-weight: 500;
+    line-height: 19.2px;
   }
 }
