@@ -184,10 +184,15 @@
 
 @media screen and (max-width: 320px) {
   .modal__caption {
-    width: 95px;
-    height: 19px;
-    gap: 0px;
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 19.2px;
+    line-height: 24px;
+    color: #fff;
+    position: absolute;
+    background-color: #212121;
+    border-radius: 8px;
+    left: 0;
   }
 }
