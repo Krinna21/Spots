@@ -23,9 +23,7 @@ const checkInputValidity = (formEl, inputEl) => {
 
 // Check if any input is invalid
 const hasInvalidInput = (inputList) => {
-  return inputList.some((input) => {
-    return !input.validity.valid;
-  });
+  return inputList.some((input) => !input.validity.valid);
 };
 
 // Toggle submit button state
@@ -44,7 +42,6 @@ const setEventListeners = (formEl) => {
   const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
   const buttonElement = formEl.querySelector(".modal__submit-btn");
 
-  // Check and toggle button state on input change
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formEl, inputElement);
@@ -55,7 +52,7 @@ const setEventListeners = (formEl) => {
   toggleButtonState(inputList, buttonElement);
 };
 
-// Enable validatio
+// Enable validation on the forms
 const enableValidation = () => {
   const formList = document.querySelectorAll(".modal__form");
   formList.forEach((formEl) => {
@@ -63,18 +60,7 @@ const enableValidation = () => {
   });
 };
 
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-enableValidation(settings);
-
-// Reset form fields and errors
+// Reset the form to its initial state
 const resetForm = (formEl) => {
   const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
   const buttonEl = formEl.querySelector(".modal__submit-btn");
@@ -89,5 +75,5 @@ const resetForm = (formEl) => {
   buttonEl.disabled = true;
 };
 
-// Export resetForm so it can be used in index.js
-export { enableValidation, resetForm };
+// Call enableValidation function when script runs
+enableValidation();
