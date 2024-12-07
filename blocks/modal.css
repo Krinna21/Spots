@@ -143,7 +143,6 @@
 
 .modal__error {
   display: block;
-  font-family: Poppins;
   font-size: 16px;
   font-weight: 500;
   line-height: 17.6px;
@@ -153,12 +152,27 @@
   margin-top: 8px;
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
 .modal__title {
   margin: 0 0 32px;
   font-size: 32px;
   font-weight: 500;
   line-height: 32px;
   text-align: left;
+}
+
+.modal__submit-btn_disabled {
+  cursor: not-allowed;
+  background: #212121;
+  opacity: 0.5;
+}
+
+.modal__submit-btn_disabled:hover {
+  background: #212121;
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 627px) {
