@@ -1,23 +1,23 @@
 // Show error message
-const showInputError = (formEl, inputEl, errorMsg) => {
+const showInputError = (formEl, inputEl, errorMsg, options) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = errorMsg;
-  inputEl.classList.add("modal__input_type_error");
+  inputEl.classList.add(options.inputErrorClass);
 };
 
 // Hide error message
-const hideInputError = (formEl, inputEl) => {
+const hideInputError = (formEl, inputEl, options) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = "";
-  inputEl.classList.remove("modal__input_type_error");
+  inputEl.classList.remove(options.inputErrorClass);
 };
 
 // Check input validity
-const checkInputValidity = (formEl, inputEl) => {
+const checkInputValidity = (formEl, inputEl, options) => {
   if (!inputEl.validity.valid) {
-    showInputError(formEl, inputEl, inputEl.validationMessage);
+    showInputError(formEl, inputEl, inputEl.validationMessage, options);
   } else {
-    hideInputError(formEl, inputEl);
+    hideInputError(formEl, inputEl, options);
   }
 };
 
@@ -27,53 +27,56 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Toggle submit button state
-const toggleButtonState = (inputList, buttonEl) => {
+const toggleButtonState = (inputList, buttonEl, options) => {
   if (hasInvalidInput(inputList)) {
-    buttonEl.classList.add("modal__submit-btn_disabled");
+    buttonEl.classList.add(options.inactiveButtonClass);
     buttonEl.disabled = true;
   } else {
-    buttonEl.classList.remove("modal__submit-btn_disabled");
+    buttonEl.classList.remove(options.inactiveButtonClass);
     buttonEl.disabled = false;
   }
 };
 
 // Set event listeners for the form
-const setEventListeners = (formEl) => {
-  const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
-  const buttonElement = formEl.querySelector(".modal__submit-btn");
+const setEventListeners = (formEl, options) => {
+  const inputList = Array.from(formEl.querySelectorAll(options.inputSelector));
+  const buttonElement = formEl.querySelector(options.submitButtonSelector);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-      checkInputValidity(formEl, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      checkInputValidity(formEl, inputElement, options);
+      toggleButtonState(inputList, buttonElement, options);
     });
   });
 
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, options);
 };
 
 // Enable validation on the forms
-const enableValidation = () => {
-  const formList = document.querySelectorAll(".modal__form");
+const enableValidation = (options) => {
+  const formList = Array.from(document.querySelectorAll(options.formSelector));
   formList.forEach((formEl) => {
-    setEventListeners(formEl);
+    setEventListeners(formEl, options);
   });
 };
 
-// Reset the form to its initial state
-const resetForm = (formEl) => {
-  const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
-  const buttonEl = formEl.querySelector(".modal__submit-btn");
+// Reset validation errors and button state
+const resetValidation = (formEl, options) => {
+  const inputList = Array.from(formEl.querySelectorAll(options.inputSelector));
+  const buttonEl = formEl.querySelector(options.submitButtonSelector);
 
   inputList.forEach((input) => {
-    input.classList.remove("modal__input_type_error");
-    const errorEl = formEl.querySelector(`#${input.id}-error`);
-    errorEl.textContent = "";
+    hideInputError(formEl, input, options);
   });
 
-  buttonEl.classList.add("modal__submit-btn_disabled");
-  buttonEl.disabled = true;
+  toggleButtonState(inputList, buttonEl, options);
 };
 
-// Call enableValidation function when script runs
-enableValidation();
+// Call enableValidation function with configuration
+enableValidation({
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__submit-btn_disabled",
+  inputErrorClass: "modal__input_type_error",
+});
