@@ -70,7 +70,7 @@ const initialCards = [
 // Open Modal
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalByEscape);
+  document.addEventListener("keydown", closeModalByEscape); // Adds Escape key listener
 
   const formEl = modal.querySelector(".modal__form");
   if (formEl) {
@@ -86,7 +86,24 @@ function openModal(modal) {
 // Close Modal
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalByEscape);
+  document.removeEventListener("keydown", closeModalByEscape); // Removes Escape key listener
+}
+
+// Function to close modal on Escape key
+function closeModalByEscape(event) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+}
+
+// Function to close modal on overlay click
+function closeModalByOverlayClick(event) {
+  if (event.target.classList.contains("modal_opened")) {
+    closeModal(event.target);
+  }
 }
 
 // Handle Edit Form Submit
@@ -109,6 +126,10 @@ function handleAddCardSubmit(evt) {
   closeModal(cardModal);
   cardForm.reset();
 }
+
+// Form Submission Handlers
+editForm.addEventListener("submit", handleEditFormSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);
 
 // Create Card Element
 function getCardElement(data) {
@@ -147,6 +168,7 @@ initialCards.forEach((item) => {
   const cardEl = getCardElement(item);
   cardsList.append(cardEl);
 });
+
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
@@ -169,10 +191,6 @@ cardModalCloseBtn.addEventListener("click", () => {
 previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
 });
-
-// Form Submission Handlers
-editForm.addEventListener("submit", handleEditFormSubmit);
-cardForm.addEventListener("submit", handleAddCardSubmit);
 
 // Overlay Click Listeners
 editModal.addEventListener("mousedown", closeModalByOverlayClick);
