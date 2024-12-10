@@ -1,3 +1,4 @@
+// Form Validation Functions
 // Show error message
 const showInputError = (formEl, inputEl, errorMsg, options) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -41,14 +42,12 @@ const toggleButtonState = (inputList, buttonEl, options) => {
 const setEventListeners = (formEl, options) => {
   const inputList = Array.from(formEl.querySelectorAll(options.inputSelector));
   const buttonElement = formEl.querySelector(options.submitButtonSelector);
-
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formEl, inputElement, options);
       toggleButtonState(inputList, buttonElement, options);
     });
   });
-
   toggleButtonState(inputList, buttonElement, options);
 };
 
@@ -64,19 +63,11 @@ const enableValidation = (options) => {
 const resetValidation = (formEl, options) => {
   const inputList = Array.from(formEl.querySelectorAll(options.inputSelector));
   const buttonEl = formEl.querySelector(options.submitButtonSelector);
-
   inputList.forEach((input) => {
     hideInputError(formEl, input, options);
   });
-
   toggleButtonState(inputList, buttonEl, options);
 };
 
 // Call enableValidation function with configuration
-enableValidation({
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__submit-btn_disabled",
-  inputErrorClass: "modal__input_type_error",
-});
+enableValidation(validationConfig);

@@ -1,3 +1,16 @@
+// Validation Config
+const validationConfig = {
+  formSelector: ".modal__form", // Select forms in modals
+  inputSelector: ".modal__input", // Select inputs inside modals
+  submitButtonSelector: ".modal__submit-btn", // Select the submit button
+  inactiveButtonClass: "modal__submit-btn_disabled", // Class for disabled submit button
+  inputErrorClass: "modal__input_type_error", // Class for input error state
+  errorClass: "modal__error_visible", // Class for showing error messages
+};
+
+// Enable validation after the config is defined
+enableValidation(validationConfig);
+
 // Card Elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardEditButton = document.querySelector(".profile__add-btn");
@@ -35,7 +48,6 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 // Card List and Template
 const cardsList = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card-template");
-
 const initialCards = [
   {
     name: "Val Thorens",
@@ -71,15 +83,9 @@ const initialCards = [
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEscape); // Adds Escape key listener
-
   const formEl = modal.querySelector(".modal__form");
   if (formEl) {
-    resetValidation(formEl, {
-      inputSelector: ".modal__input",
-      submitButtonSelector: ".modal__submit-btn",
-      inactiveButtonClass: "modal__submit-btn_disabled",
-      inputErrorClass: "modal__input_type_error",
-    });
+    resetValidation(formEl, validationConfig);
   }
 }
 
@@ -99,13 +105,6 @@ function closeModalByEscape(event) {
   }
 }
 
-// Function to close modal on overlay click
-function closeModalByOverlayClick(event) {
-  if (event.target.classList.contains("modal_opened")) {
-    closeModal(event.target);
-  }
-}
-
 // Handle Edit Form Submit
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -121,10 +120,14 @@ function handleAddCardSubmit(evt) {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   });
-
   cardsList.prepend(newCard);
   closeModal(cardModal);
   cardForm.reset();
+  toggleButtonState(
+    cardForm.querySelectorAll(validationConfig.inputSelector),
+    cardForm.querySelector(validationConfig.submitButtonSelector),
+    validationConfig
+  );
 }
 
 // Form Submission Handlers
@@ -140,26 +143,21 @@ function getCardElement(data) {
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
-
   cardLikeBtn.addEventListener("click", () => {
     cardLikeBtn.classList.toggle("card__like-btn_liked");
   });
-
   cardImageEl.addEventListener("click", () => {
     previewModalCaptionEl.textContent = data.name;
     previewModalImageEl.src = data.link;
     previewModalImageEl.alt = data.name;
     openModal(previewModal);
   });
-
   cardDeleteBtn.addEventListener("click", () => {
     cardElement.remove();
   });
-
   return cardElement;
 }
 
@@ -175,19 +173,15 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(editModal);
 });
-
 editModalCloseBtn.addEventListener("click", () => {
   closeModal(editModal);
 });
-
 cardEditButton.addEventListener("click", () => {
   openModal(cardModal);
 });
-
 cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
 });
-
 previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
 });
