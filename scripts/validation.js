@@ -1,3 +1,13 @@
+// Validation Config
+const validationConfig = {
+  formSelector: ".modal__form", // Select forms in modals
+  inputSelector: ".modal__input", // Select inputs inside modals
+  submitButtonSelector: ".modal__submit-btn", // Select the submit button
+  inactiveButtonClass: "modal__submit-btn_disabled", // Class for disabled submit button
+  inputErrorClass: "modal__input_type_error", // Class for input error state
+  errorClass: "modal__error_visible", // Class for showing error messages
+};
+
 // Form Validation Functions
 // Show error message
 const showInputError = (formEl, inputEl, errorMsg, options) => {

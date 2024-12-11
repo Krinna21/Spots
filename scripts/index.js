@@ -1,16 +1,3 @@
-// Validation Config
-const validationConfig = {
-  formSelector: ".modal__form", // Select forms in modals
-  inputSelector: ".modal__input", // Select inputs inside modals
-  submitButtonSelector: ".modal__submit-btn", // Select the submit button
-  inactiveButtonClass: "modal__submit-btn_disabled", // Class for disabled submit button
-  inputErrorClass: "modal__input_type_error", // Class for input error state
-  errorClass: "modal__error_visible", // Class for showing error messages
-};
-
-// Enable validation after the config is defined
-enableValidation(validationConfig);
-
 // Card Elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardEditButton = document.querySelector(".profile__add-btn");
@@ -185,6 +172,15 @@ cardModalCloseBtn.addEventListener("click", () => {
 previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
 });
+
+// Function to close the modal when clicking outside of it
+function closeModalByOverlayClick(event) {
+  // Check if the click is outside the modal content (on the overlay)
+  if (event.target === event.currentTarget) {
+    // Close the modal here
+    event.currentTarget.style.display = "none"; // Assuming you hide the modal with display: none
+  }
+}
 
 // Overlay Click Listeners
 editModal.addEventListener("mousedown", closeModalByOverlayClick);
