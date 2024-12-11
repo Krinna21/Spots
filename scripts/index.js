@@ -110,8 +110,9 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(newCard);
   closeModal(cardModal);
   cardForm.reset();
+
   toggleButtonState(
-    cardForm.querySelectorAll(validationConfig.inputSelector),
+    Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
     cardForm.querySelector(validationConfig.submitButtonSelector),
     validationConfig
   );
