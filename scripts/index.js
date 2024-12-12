@@ -71,9 +71,6 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEscape); // Adds Escape key listener
   const formEl = modal.querySelector(".modal__form");
-  if (formEl) {
-    resetValidation(formEl, validationConfig);
-  }
 }
 
 // Close Modal
@@ -159,6 +156,7 @@ initialCards.forEach((item) => {
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  resetValidation(editForm, validationConfig);
   openModal(editModal);
 });
 editModalCloseBtn.addEventListener("click", () => {
@@ -179,7 +177,7 @@ function closeModalByOverlayClick(event) {
   // Check if the click is outside the modal content (on the overlay)
   if (event.target === event.currentTarget) {
     // Close the modal here
-    event.currentTarget.style.display = "none"; // Assuming you hide the modal with display: none
+    closeModal(event.currentTarget);
   }
 }
 
