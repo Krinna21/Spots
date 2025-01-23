@@ -38,11 +38,13 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            },
           },
+          "postcss-loader",
         ],
       },
-
-      // NEW
       {
         test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
