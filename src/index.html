@@ -15,7 +15,7 @@
     <div class="page__image page__image_achievements"></div>
     <img
       class="page__image"
-      src="<%= require('./images/website-contacts.jpg')%>"
+      src="<%=require('./images/website-contacts.jpg')%>"
     />
     <div class="page">
       <header class="header">
@@ -24,7 +24,7 @@
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Bessie Coleman"
             class="profile__avatar"
           />
@@ -34,13 +34,14 @@
             <button type="button" class="profile__edit-btn">
               <img
                 class="profile__pencil"
-                src="./images/pencile.svg"
+                src="<%=require('./images/pencile.svg')%>"
                 alt="Pencile Icon"
               />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/plus.svg" alt="Plus Icon" />New Post
+            <img src="<%=require('./images/plus.svg')%>" alt="Plus Icon" />New
+            Post
           </button>
         </section>
         <section class="page__section cards">
@@ -64,7 +65,7 @@
       <div class="modal" id="edit-modal">
         <div class="modal__content">
           <button type="button" class="modal__close-btn">
-            <img src="./images/close-btn.svg" alt="close" />
+            <img src="<%=require('./images/close-btn.svg')%>" alt="close" />
           </button>
           <h2 class="modal__title">Edit profile</h2>
           <form id="edit-profile" class="modal__form" novalidate>
@@ -113,7 +114,7 @@
       <div class="modal" id="add-card-modal">
         <div class="modal__content">
           <button type="button" class="modal__close-btn">
-            <img src="./images/close-btn.svg" alt="close" />
+            <img src="<%=require('./images/close-btn.svg')%>" alt="close" />
           </button>
           <h2 class="modal__title">New Post</h2>
           <form id="add-card-form" class="modal__form" novalidate>
