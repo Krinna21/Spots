@@ -1,5 +1,5 @@
 // Validation Config
-const validationConfig = {
+export const validationConfig = {
   formSelector: ".modal__form", // Select forms in modals
   inputSelector: ".modal__input", // Select inputs inside modals
   submitButtonSelector: ".modal__submit-btn", // Select the submit button
@@ -62,7 +62,7 @@ const setEventListeners = (formEl, options) => {
 };
 
 // Enable validation on the forms
-const enableValidation = (options) => {
+export const enableValidation = (options) => {
   const formList = Array.from(document.querySelectorAll(options.formSelector));
   formList.forEach((formEl) => {
     setEventListeners(formEl, options);
@@ -70,7 +70,7 @@ const enableValidation = (options) => {
 };
 
 // Reset validation errors and button state
-const resetValidation = (formEl, options) => {
+export const resetValidation = (formEl, options) => {
   const inputList = Array.from(formEl.querySelectorAll(options.inputSelector));
   const buttonEl = formEl.querySelector(options.submitButtonSelector);
   inputList.forEach((input) => {
@@ -78,6 +78,3 @@ const resetValidation = (formEl, options) => {
   });
   toggleButtonState(inputList, buttonEl, options);
 };
-
-// Call enableValidation function with configuration
-enableValidation(validationConfig);

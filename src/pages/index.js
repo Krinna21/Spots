@@ -1,3 +1,18 @@
+import "./pages/index.css";
+
+// Import the image
+import stepsSrc from "./images/steps.png";
+
+// Select the element and set the src
+const stepsImage = document.getElementById("image-steps");
+stepsImage.src = stepsSrc;
+
+import {
+  enableValidation,
+  validationConfig,
+  resetValidation,
+} from "./validation.js";
+
 // Card Elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardEditButton = document.querySelector(".profile__add-btn");
@@ -185,3 +200,6 @@ function closeModalByOverlayClick(event) {
 editModal.addEventListener("mousedown", closeModalByOverlayClick);
 cardModal.addEventListener("mousedown", closeModalByOverlayClick);
 previewModal.addEventListener("mousedown", closeModalByOverlayClick);
+
+// Call enableValidation function with configuration
+enableValidation(validationConfig);
