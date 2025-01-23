@@ -1,7 +1,7 @@
-import "./pages/index.css";
+import "./index.css";
 
 // Import the image
-import stepsSrc from "./images/steps.png";
+import stepsSrc from "../images/steps.png";
 
 // Select the element and set the src
 const stepsImage = document.getElementById("image-steps");
@@ -11,7 +11,7 @@ import {
   enableValidation,
   validationConfig,
   resetValidation,
-} from "./validation.js";
+} from "../scripts/validation.js";
 
 // Card Elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
