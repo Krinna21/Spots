@@ -1,4 +1,5 @@
 import "./index.css";
+import Api from "../scripts/Api.js";
 
 // Import the image
 import stepsSrc from "../images/steps.png";
@@ -12,6 +13,18 @@ import {
   validationConfig,
   resetValidation,
 } from "../scripts/validation.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((cards) => {
+  console.log(cards);
+});
 
 // Card Elements
 const profileEditButton = document.querySelector(".profile__edit-btn");

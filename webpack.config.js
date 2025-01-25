@@ -1,3 +1,5 @@
+// localhost/:1 Refused to apply style from 'http://localhost:8080/pages/index.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. thiis error still comes up
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -10,14 +12,16 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: "",
+    publicPath: "/",
   },
 
   mode: "development",
   devtool: "inline-source-map",
   stats: "errors-only",
   devServer: {
-    static: path.resolve(__dirname, "./dist"),
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
     compress: true,
     port: 8080,
     open: true,
@@ -30,7 +34,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel-loader",
-        exclude: "/node_modules/",
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
