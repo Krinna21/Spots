@@ -1,5 +1,5 @@
 import "./index.css";
-import Api from "../scripts/Api.js";
+import Api from "../utils/Api.js";
 
 // Import the image
 import stepsSrc from "../images/steps.png";
@@ -17,17 +17,29 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "797a5173-984b-4931-b927-429e2788048b",
     "Content-Type": "application/json",
   },
 });
 
-api.getInitialCards().then((cards) => {
-  cards.forEach((item) => {
-    const cardEl = getCardElement(item);
-    cardsList.append(cardEl);
-  });
-});
+api
+  .getAppInfo()
+  .then(([cards, user]) => {
+    // 4 // Handle the User's information
+    const { name, about, avatar } = user;
+
+    // Set user name, description, and avatar
+    profileName.textContent = name;
+    profileDescription.textContent = about;
+    const profileAvatar = document.querySelector(".profile__avatar");
+    profileAvatar.src = avatar;
+
+    cards.forEach((item) => {
+      const cardEl = getCardElement(item);
+      cardsList.append(cardEl);
+    });
+  })
+  .catch(console.error);
 
 // Card Elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -123,9 +135,18 @@ function closeModalByEscape(event) {
 // Handle Edit Form Submit
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: profileNameInput.value,
+      about: profileDescriptionInput.value,
+    })
+    .then((data) => {
+      // TODO-Use data argument instead of the input values
+      profileName.textContent = data.value;
+      profileDescription.textContent = data.value;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 // Handle Add Card Submit
