@@ -12,6 +12,7 @@ import {
   enableValidation,
   validationConfig,
   resetValidation,
+  toggleButtonState,
 } from "../scripts/validation.js";
 
 const api = new Api({
@@ -25,7 +26,6 @@ const api = new Api({
 api
   .getAppInfo()
   .then(([cards, user]) => {
-    // 4 // Handle the User's information
     const { name, about, avatar } = user;
 
     // Set user name, description, and avatar
@@ -64,6 +64,14 @@ const profileDescriptionInput = editModal.querySelector(
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
+// Avatar Elements
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector(".modal__form");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__form");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+const avatarModalBtn = document.querySelector(".profile__avatar-Btn");
+
 // Close Buttons
 const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
@@ -78,36 +86,6 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 // Card List and Template
 const cardsList = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card-template");
-// const initialCards = [
-//   {
-//     name: "Val Thorens",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-//   },
-//   {
-//     name: "Restaurant terrace",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-//   },
-//   {
-//     name: "An outdoor cafe",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-//   },
-//   {
-//     name: "A very long bridge, over the forest and through the trees",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-//   },
-//   {
-//     name: "Tunnel with morning light",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-//   },
-//   {
-//     name: "Mountain house",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-//   },
-//   {
-//     name: "Golden Gate Bridge",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-//   },
-// ];
 
 // Open Modal
 function openModal(modal) {
@@ -135,15 +113,15 @@ function closeModalByEscape(event) {
 // Handle Edit Form Submit
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+
   api
     .editUserInfo({
       name: profileNameInput.value,
       about: profileDescriptionInput.value,
     })
     .then((data) => {
-      // TODO-Use data argument instead of the input values
-      profileName.textContent = data.value;
-      profileDescription.textContent = data.value;
+      profileName.textContent = data.name; // Use updated data from the server
+      profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch(console.error);
@@ -152,24 +130,36 @@ function handleEditFormSubmit(evt) {
 // Handle Add Card Submit
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  const newCard = getCardElement({
+
+  const cardData = {
     name: cardNameInput.value,
     link: cardLinkInput.value,
-  });
-  cardsList.prepend(newCard);
-  closeModal(cardModal);
-  cardForm.reset();
+  };
 
-  toggleButtonState(
-    Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
-    cardForm.querySelector(validationConfig.submitButtonSelector),
-    validationConfig
-  );
+  api
+    .addCard(cardData)
+    .then((newCard) => {
+      const cardElement = getCardElement(newCard); // Render the new card
+      cardsList.prepend(cardElement); // Add to the top of the card list
+      cardForm.reset(); // Reset the form
+      closeModal(cardModal);
+
+      toggleButtonState(
+        Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
+        cardForm.querySelector(validationConfig.submitButtonSelector),
+        validationConfig
+      );
+    })
+    .catch(console.error);
 }
 
 // Form Submission Handlers
 editForm.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
+
+avatarModalBtn.addEventListener("click", () => {
+  openModal(avatarModal);
+});
 
 // Create Card Element
 function getCardElement(data) {
@@ -220,9 +210,7 @@ previewModalCloseBtn.addEventListener("click", () => {
 
 // Function to close the modal when clicking outside of it
 function closeModalByOverlayClick(event) {
-  // Check if the click is outside the modal content (on the overlay)
   if (event.target === event.currentTarget) {
-    // Close the modal here
     closeModal(event.currentTarget);
   }
 }

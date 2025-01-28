@@ -38,7 +38,7 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Toggle submit button state
-const toggleButtonState = (inputList, buttonEl, options) => {
+export const toggleButtonState = (inputList, buttonEl, options) => {
   if (hasInvalidInput(inputList)) {
     buttonEl.classList.add(options.inactiveButtonClass);
     buttonEl.disabled = true;
