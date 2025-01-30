@@ -18,7 +18,6 @@
 
 .modal_opened {
   visibility: visible;
-  opacity: 1;
 }
 
 .modal__content {
