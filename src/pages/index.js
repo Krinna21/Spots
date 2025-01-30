@@ -18,9 +18,28 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "797a5173-984b-4931-b927-429e2788048b",
+    authorization: "a526df05-2ddd-436b-bd8a-2e93024347e2",
     "Content-Type": "application/json",
   },
+});
+
+document.querySelector(".cards__list").addEventListener("click", (event) => {
+  if (event.target.classList.contains("card__like-btn")) {
+    const likeButton = event.target;
+    const cardElement = likeButton.closest(".card");
+    const cardId = cardElement.dataset.id;
+    const isLiked = likeButton.classList.contains("card__like-btn_active");
+
+    api
+      .toggleLike(cardId, isLiked)
+      .then((updatedCard) => {
+        likeButton.classList.toggle(
+          "card__like-btn_active",
+          updatedCard.isLiked
+        );
+      })
+      .catch((err) => console.error(err));
+  }
 });
 
 api
@@ -194,7 +213,7 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_liked");
+    cardLikeBtn.classList.toggle("card__like-btn_active");
   });
   cardImageEl.addEventListener("click", () => {
     previewModalCaptionEl.textContent = data.name;

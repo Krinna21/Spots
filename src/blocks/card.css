@@ -67,7 +67,7 @@
   transition: opacity 0.3s ease;
 }
 
-.card__like-btn_liked {
+.card__like-btn_active {
   cursor: pointer;
   background-image: url(../images/Heart.svg);
   opacity: 1;
@@ -76,7 +76,7 @@
   background-repeat: no-repeat;
 }
 
-.card__like-btn_liked:hover {
+.card__like-btn_active:hover {
   background-image: url(../images/Heart-Hover.svg);
   background-repeat: no-repeat;
   background-color: transparent;
