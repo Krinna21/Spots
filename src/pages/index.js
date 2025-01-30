@@ -203,7 +203,7 @@ function getCardElement(data) {
     openModal(previewModal);
   });
   cardDeleteBtn.addEventListener("click", () => {
-    cardElement.remove();
+    handleDeleteCard(cardElement, data);
   });
   return cardElement;
 }
