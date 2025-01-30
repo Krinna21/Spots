@@ -189,7 +189,7 @@
   text-align: center;
 }
 
-.modal__delete-btn {
+.modal__submit-btn_delete {
   width: 156px;
   height: 56px;
   gap: 8px;
@@ -200,21 +200,32 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
+  cursor: pointer;
 }
 
-.modal__cancel-btn {
+.modal__submit-btn_delete:hover {
+  background: #ff3333;
+}
+
+.modal__submit-btn_cancel {
   width: 156px;
   height: 56px;
   gap: 8px;
   border-radius: 8px;
   border: 1px solid #212121;
   background-color: #ffffff;
+  color: #212121;
   font-family: Poppins;
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
+  cursor: pointer;
 }
 
+.modal__submit-btn_cancel:hover {
+  background: #212121;
+  color: #ffffff;
+}
 @media screen and (max-width: 627px) {
   .modal {
     padding: 0 10px;

@@ -208,19 +208,22 @@ function getCardElement(data) {
   return cardElement;
 }
 
+let selectedCard = null;
+let selectedCardId = null;
+
 // Delete modal
 function handleDeleteCard(cardElement, data) {
-  selectedCard = cardElement; // Assign the selected card element
-  selectedCardId = data._id; // Assign the card's unique ID from API
+  selectedCard = cardElement;
+  selectedCardId = data._id;
   openModal(deleteModal);
 }
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
-    .removeCard(selectedCardId) // API call to delete the card
+    .removeCard(selectedCardId)
     .then(() => {
-      selectedCard.remove(); // Remove from DOM
+      selectedCard.remove();
       closeModal(deleteModal);
     })
     .catch(console.error);
