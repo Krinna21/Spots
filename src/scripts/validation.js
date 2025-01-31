@@ -25,6 +25,19 @@ const hideInputError = (formEl, inputEl, options) => {
 
 // Check input validity
 const checkInputValidity = (formEl, inputEl, options) => {
+  if (inputEl.id === "profile-avatar-input") {
+    const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp))$/i;
+    if (!urlPattern.test(inputEl.value)) {
+      showInputError(
+        formEl,
+        inputEl,
+        "Enter a valid image URL (png, jpg, jpeg, gif, svg, webp)",
+        options
+      );
+      return;
+    }
+  }
+
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage, options);
   } else {

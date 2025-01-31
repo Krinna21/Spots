@@ -147,12 +147,18 @@
     padding-top: 20px;
   }
 
+  .profile__avatar-container {
+    position: relative;
+    display: inline-block;
+  }
+
   .profile__pencile-icon {
     margin: 0 0 4px 8px;
   }
 
   .profile__avatar-btn {
-    visibility: visible;
+    visibility: hidden;
+    position: absolute;
     width: 23px;
     height: 23px;
     top: 52px;
@@ -161,6 +167,11 @@
     opacity: 60%;
     background: black;
     padding: 0;
+  }
+
+  .profile__avatar-container:hover {
+    visibility: visible;
+    opacity: 1;
   }
 
   .profile__avatar-btn::after {

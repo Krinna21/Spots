@@ -193,6 +193,8 @@ function handleAvatarSubmit(evt) {
 
   const saveButton = avatarForm.querySelector(".modal__submit-btn");
   saveButton.textContent = "Saving...";
+  saveButton.disabled = true;
+  saveButton.classList.add("modal__submit-btn_disabled");
 
   api
     .editAvatarInfo(avatarInput.value)
@@ -246,6 +248,7 @@ function getCardElement(data) {
     previewModalCaptionEl.textContent = data.name;
     previewModalImageEl.src = data.link;
     previewModalImageEl.alt = data.name;
+    console.log("Image clicked. Opening preview modal.");
     openModal(previewModal);
   });
 
