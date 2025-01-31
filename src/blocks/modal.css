@@ -280,6 +280,11 @@
     top: -5px;
     right: -5px;
   }
+
+  .modal__submit-btn_cancel {
+    width: 156px;
+    height: 56px;
+  }
 }
 
 @media screen and (max-width: 320px) {
