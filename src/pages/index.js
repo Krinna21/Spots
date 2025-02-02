@@ -42,7 +42,6 @@ api
 
     const { name, about, avatar } = user;
 
-    // Set user name, description, and avatar
     profileName.textContent = name;
     profileDescription.textContent = about;
     profileAvatar.src = avatar;
@@ -112,7 +111,6 @@ const cardTemplate = document.querySelector("#card-template");
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEscape);
-  const formEl = modal.querySelector(".modal__form");
 }
 
 // Close Modal
@@ -131,11 +129,22 @@ function closeModalByEscape(event) {
   }
 }
 
+// Declare and cache DOM elements at the top
+const saveButtonEdit = editForm.querySelector(".modal__submit-btn");
+const saveButtonCard = cardForm.querySelector(".modal__submit-btn");
+const saveButtonAvatar = avatarForm.querySelector(".modal__submit-btn");
+
+// Function to reset button text and state
+function resetSaveButton(saveButton) {
+  saveButton.textContent = "Save";
+  saveButton.disabled = false;
+  saveButton.classList.remove("modal__submit-btn_disabled");
+}
+
 // Handle Edit Form Submit
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  const saveButton = editForm.querySelector(".modal__submit-btn");
-  saveButton.textContent = "Saving...";
+  saveButtonEdit.textContent = "Saving...";
 
   api
     .editUserInfo({
@@ -145,12 +154,13 @@ function handleEditFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
-      saveButton.textContent = "Save";
       closeModal(editModal);
     })
     .catch((err) => {
-      saveButton.textContent = "Save";
       console.error(err);
+    })
+    .finally(() => {
+      resetSaveButton(saveButtonEdit);
     });
 }
 
@@ -158,8 +168,7 @@ function handleEditFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  const saveButton = cardForm.querySelector(".modal__submit-btn");
-  saveButton.textContent = "Saving...";
+  saveButtonCard.textContent = "Saving...";
 
   const cardData = {
     name: cardNameInput.value,
@@ -172,40 +181,47 @@ function handleAddCardSubmit(evt) {
       const cardElement = getCardElement(newCard);
       cardsList.prepend(cardElement);
       cardForm.reset();
-      saveButton.textContent = "Save";
       closeModal(cardModal);
 
       toggleButtonState(
         Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
-        cardForm.querySelector(validationConfig.submitButtonSelector),
+        saveButtonCard,
         validationConfig
       );
     })
     .catch((err) => {
-      saveButton.textContent = "Save";
       console.error(err);
+    })
+    .finally(() => {
+      resetSaveButton(saveButtonCard);
     });
 }
 
-//Avatar Handler
+// Avatar Handler
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
-  const saveButton = avatarForm.querySelector(".modal__submit-btn");
-  saveButton.textContent = "Saving...";
-  saveButton.disabled = true;
-  saveButton.classList.add("modal__submit-btn_disabled");
+  saveButtonAvatar.textContent = "Saving...";
+  saveButtonAvatar.disabled = true;
+  saveButtonAvatar.classList.add("modal__submit-btn_disabled");
 
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
-      document.querySelector(".profile__avatar").src = data.avatar;
-      saveButton.textContent = "Save";
+      profileAvatar.src = data.avatar;
       closeModal(avatarModal);
       avatarForm.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      resetSaveButton(saveButtonAvatar);
+    });
 }
+
+// Form Submission Handlers
+editForm.addEventListener("submit", handleEditFormSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 // Form Submission Handlers
 editForm.addEventListener("submit", handleEditFormSubmit);
@@ -321,10 +337,7 @@ profileAvatar.addEventListener("click", () => {
 document
   .querySelector(".modal__submit-btn_cancel")
   .addEventListener("click", () => {
-    const openedModal = document.querySelector(".modal_opened");
-    if (openedModal) {
-      closeModal(openedModal);
-    }
+    closeModal(deleteModal);
   });
 
 // Function to close the modal when clicking outside of it
