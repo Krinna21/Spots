@@ -134,11 +134,13 @@ const saveButtonEdit = editForm.querySelector(".modal__submit-btn");
 const saveButtonCard = cardForm.querySelector(".modal__submit-btn");
 const saveButtonAvatar = avatarForm.querySelector(".modal__submit-btn");
 
+//
+
 // Function to reset button text and state
 function resetSaveButton(saveButton) {
   saveButton.textContent = "Save";
-  saveButton.disabled = false;
-  saveButton.classList.remove("modal__submit-btn_disabled");
+  // saveButton.disabled = false;
+  // saveButton.classList.remove("modal__submit-btn_disabled");
 }
 
 // Handle Edit Form Submit
@@ -154,6 +156,11 @@ function handleEditFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
+      toggleButtonState(
+        [profileNameInput, profileDescription],
+        saveButtonEdit,
+        validationConfig
+      );
       closeModal(editModal);
     })
     .catch((err) => {
@@ -202,8 +209,8 @@ function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
   saveButtonAvatar.textContent = "Saving...";
-  saveButtonAvatar.disabled = true;
-  saveButtonAvatar.classList.add("modal__submit-btn_disabled");
+  // saveButtonAvatar.disabled = true;
+  // saveButtonAvatar.classList.add("modal__submit-btn_disabled");
 
   api
     .editAvatarInfo(avatarInput.value)
@@ -211,17 +218,13 @@ function handleAvatarSubmit(evt) {
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
       avatarForm.reset();
+      toggleButtonState([avatarInput], saveButtonAvatar, validationConfig);
     })
     .catch(console.error)
     .finally(() => {
       resetSaveButton(saveButtonAvatar);
     });
 }
-
-// Form Submission Handlers
-editForm.addEventListener("submit", handleEditFormSubmit);
-cardForm.addEventListener("submit", handleAddCardSubmit);
-avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 // Form Submission Handlers
 editForm.addEventListener("submit", handleEditFormSubmit);
