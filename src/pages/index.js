@@ -133,6 +133,7 @@ function closeModalByEscape(event) {
 const saveButtonEdit = editForm.querySelector(".modal__submit-btn");
 const saveButtonCard = cardForm.querySelector(".modal__submit-btn");
 const saveButtonAvatar = avatarForm.querySelector(".modal__submit-btn");
+const deleteButton = deleteForm.querySelector(".modal__submit-btn_delete");
 
 //
 
@@ -156,11 +157,6 @@ function handleEditFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
-      toggleButtonState(
-        [profileNameInput, profileDescription],
-        saveButtonEdit,
-        validationConfig
-      );
       closeModal(editModal);
     })
     .catch((err) => {
@@ -291,17 +287,18 @@ function handleDeleteCard(cardElement, data) {
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
 
-  const deleteButton = deleteForm.querySelector(".modal__submit-btn_delete");
   deleteButton.textContent = "Deleting...";
 
   api
     .removeCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
-      deleteButton.textContent = "Delete";
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      deleteButton.textContent = "Delete";
+    });
 }
 
 // Event Listeners
