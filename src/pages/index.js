@@ -16,25 +16,6 @@ const api = new Api({
   },
 });
 
-document.querySelector(".cards__list").addEventListener("click", (event) => {
-  if (event.target.classList.contains("card__like-btn")) {
-    const likeButton = event.target;
-    const cardElement = likeButton.closest(".card");
-    const cardId = cardElement.dataset.id;
-    const isLiked = likeButton.classList.contains("card__like-btn_active");
-
-    api
-      .toggleLike(cardId, isLiked)
-      .then((updatedCard) => {
-        likeButton.classList.toggle(
-          "card__like-btn_active",
-          updatedCard.isLiked
-        );
-      })
-      .catch((err) => console.error(err));
-  }
-});
-
 api
   .getAppInfo()
   .then(([cards, user]) => {
