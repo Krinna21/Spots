@@ -10,9 +10,17 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: "/",
+    publicPath: "https://krinna21.github.io/Spots/",
   },
-
+  resolve: {
+    fallback: {
+      buffer: require.resolve("buffer/"),
+      stream: require.resolve("stream-browserify"),
+      crypto: require.resolve("crypto-browserify"),
+      path: require.resolve("path-browserify"),
+      os: require.resolve("os-browserify"),
+    },
+  },
   mode: "development",
   devtool: "inline-source-map",
   stats: "errors-only",
