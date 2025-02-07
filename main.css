@@ -354,14 +354,14 @@ template {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  src: url(/35d26b781dc5fda684cc.ttf) format("truetype");
+  src: url(https://krinna21.github.io/Spots/35d26b781dc5fda684cc.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  src: url(/673ed42382ab264e0bf5.ttf) format("truetype");
+  src: url(https://krinna21.github.io/Spots/673ed42382ab264e0bf5.ttf) format("truetype");
 }
 
 .header {
@@ -677,7 +677,7 @@ template {
   right: 10px;
   width: 32px;
   height: 32px;
-  background: url(/d19faa0112f44e2b6e01.svg);
+  background: url(https://krinna21.github.io/Spots/d19faa0112f44e2b6e01.svg);
   cursor: pointer;
   transition: opacity 0.3s ease;
   position: absolute;
@@ -686,7 +686,7 @@ template {
 }
 
 .card__delete-btn:hover {
-  background-image: url(/86ae92bd1a937388d496.svg);
+  background-image: url(https://krinna21.github.io/Spots/86ae92bd1a937388d496.svg);
   opacity: 1;
 }
 
@@ -705,7 +705,7 @@ template {
 }
 
 .card__like-btn {
-  background-image: url(/71ef31f43f924a85c30b.svg);
+  background-image: url(https://krinna21.github.io/Spots/71ef31f43f924a85c30b.svg);
   width: 23px;
   height: 20px;
   border: none;
@@ -723,7 +723,7 @@ template {
 
 .card__like-btn_active {
   cursor: pointer;
-  background-image: url(/f9b5881bc5f3c3308e3b.svg);
+  background-image: url(https://krinna21.github.io/Spots/f9b5881bc5f3c3308e3b.svg);
   opacity: 1;
   background-color: transparent;
   border: none;
@@ -731,7 +731,7 @@ template {
 }
 
 .card__like-btn_active:hover {
-  background-image: url(/29c9644b290e6cb15b35.svg);
+  background-image: url(https://krinna21.github.io/Spots/29c9644b290e6cb15b35.svg);
   background-repeat: no-repeat;
   background-color: transparent;
 }
@@ -862,7 +862,7 @@ template {
 }
 
 .modal__close-btn_type_preview {
-  background-image: url(/1c517008152856bd3203.svg);
+  background-image: url(https://krinna21.github.io/Spots/1c517008152856bd3203.svg);
   top: 0;
   right: -50px;
 }
@@ -1107,21 +1107,21 @@ template {
   font-family: "ubuntu-regular";
   font-style: normal;
   font-weight: 400;
-  src: url(/a6767dc546b61fb075f2.ttf) format("truetype");
+  src: url(https://krinna21.github.io/Spots/a6767dc546b61fb075f2.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "ubuntu-bold";
   font-style: normal;
   font-weight: 700;
-  src: url(/995358969571c1c37362.ttf) format("truetype");
+  src: url(https://krinna21.github.io/Spots/995358969571c1c37362.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "ubuntu-Italic";
   font-style: normal;
   font-weight: 700;
-  src: url(/f8eadd5cc5bdd24a63bc.ttf) format("truetype");
+  src: url(https://krinna21.github.io/Spots/f8eadd5cc5bdd24a63bc.ttf) format("truetype");
 }
 
 .page {
@@ -1139,7 +1139,7 @@ template {
 }
 
 .page__image_achievements {
-  background-image: url(/8b970b937b3c14e457c8.svg);
+  background-image: url(https://krinna21.github.io/Spots/8b970b937b3c14e457c8.svg);
   height: 444px;
   background-size: cover;
   background-repeat: no-repeat;
