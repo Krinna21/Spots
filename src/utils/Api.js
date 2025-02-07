@@ -1,7 +1,12 @@
+require("dotenv").config();
+
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
+    this._headers = {
+      ...headers,
+      authorization: process.env.API_TOKEN,
+    };
   }
 
   _handleResponse(res) {

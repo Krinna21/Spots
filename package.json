@@ -33,6 +33,7 @@
     "webpack-dev-server": "4.9.3"
   },
   "dependencies": {
-    "core-js": "3.23.5"
+    "core-js": "3.23.5",
+    "dotenv": "^16.4.7"
   }
 }
