@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "core-js": "3.23.5",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "process": "^0.11.10"
   }
 }
